@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Kommande evenemang</h2>
+  
+  {% if todays_events %}
+  <div class="event-section">
+    <div class="date">IDAG</div>
+    <div class="event-list">
+    
+    <ul>
+    {% for event in todays_events %}
+      <li><strong>{{ event.when|date:"H:i" }}</strong> <a href="#">{{ event.name }}</a><br />
+          <span class="event-info">{{ event.tagline }} (<a href="#">{{event.where.name }}</a>)</span>
+      </li>
+    {% endfor %}
+    </ul>
+    </div>
+  </div>
+  {% endif %}
+  
+  {% if tomorrows_events %}
+  <div class="event-section">
+    <div class="date">IMORGON</div>
+    <div class="event-list">
+    <ul>
+    {% for event in tomorrows_events %}
+      <li><strong>{{ event.when|date:"H:i" }}</strong> <a href="#">{{ event.name }}</a><br />
+          <span class="event-info">{{ event.tagline }} (<a href="#">{{event.where.name }}</a>)</span>
+      </li>
+    {% endfor %}
+    </ul>
+    </div>
+  </div>
+  {% endif %}
+  
+  {% if future_events %}
+  <div class="event-section">
+    <div class="date">FRAMÖVER</div>
+    <div class="event-list">
+    
+    <ul>
+    {% for event in future_events %}
+      <li><strong>{{ event.when|date:"H:i" }}</strong> <a href="#">{{ event.name }}</a><br />
+          <span class="event-info">{{ event.tagline }} (<a href="#">{{event.where.name }}</a>)</span>
+      </li>
+    {% endfor %}
+    </ul>
+    </div>
+  </div>
+  {% endif %}
+{% endblock %}
