@@ -1,6 +1,6 @@
 from django.test import TestCase
 from app.models import Tag, Event
-from app.const import FETCH_THEM_ALL
+from app.const import THEM_ALL
 
 class TagTestCase(TestCase):
   fixtures = ['data.json']

@@ -1,7 +1,7 @@
 import sys
 from appengine_django.models import BaseModel
 from google.appengine.ext import db
-from google.appengine.ext.db import polymodel
+from google.appengine.ext.db.polymodel import PolyModel
 from datetime import timedelta
 from urllib import urlopen, quote_plus
 
@@ -31,7 +31,7 @@ class Tag(BaseModel):
     
   name = property(_get_name)
   
-class Taggable(BaseModel):
+class Taggable(PolyModel):
   tags = db.ListProperty(db.Key)
   
   def add_tag(self, tagname):

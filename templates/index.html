@@ -9,8 +9,8 @@
     
     <ul>
     {% for event in todays_events %}
-      <li><strong>{{ event.when|date:"H:i" }}</strong> <a href="#">{{ event.name }}</a><br />
-          <span class="event-info">{{ event.tagline }} (<a href="#">{{event.where.name }}</a>)</span>
+      <li><strong>{{ event.when|date:"H:i" }}</strong> <a href="#">{{ event.name }}</a>
+       <span class="event-info"><a href="#">({{event.where.name }})</a></span>
       </li>
     {% endfor %}
     </ul>
