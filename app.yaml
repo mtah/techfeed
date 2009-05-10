@@ -1,11 +1,13 @@
-application: techfeed
+﻿application: techfeed
 version: 1
 runtime: python
 api_version: 1
+
+default_expiration: '3650d'
 
 handlers:
 - url: /static
   static_dir: static
 
 - url: /.*
-  script: main.py
+  script: common/appenginepatch/main.py

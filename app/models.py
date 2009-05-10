@@ -1,7 +1,4 @@
-import sys
-from appengine_django.models import BaseModel
 from google.appengine.ext import db
-from google.appengine.ext.db.polymodel import PolyModel
 from datetime import timedelta
 from urllib import urlopen, quote_plus
 
@@ -19,7 +16,7 @@ def to_geopt(address):
   except IOError:
     return None
     
-class Tag(BaseModel):
+class Tag(db.Model):
   count = db.IntegerProperty(default=0)
   
   def _get_name(self):
@@ -31,7 +28,7 @@ class Tag(BaseModel):
     
   name = property(_get_name)
   
-class Taggable(PolyModel):
+class Taggable(db.polymodel.PolyModel):
   tags = db.ListProperty(db.Key)
   
   def add_tag(self, tagname):
@@ -55,7 +52,7 @@ class Taggable(PolyModel):
     tag = Tag.get_by_name(tagname.lower())
     return cls.all().filter('tags = ', tag)
 
-class Venue(BaseModel):
+class Venue(db.Model):
   name = db.StringProperty(required=True)
   address = db.PostalAddressProperty(required=True)
   coordinates = db.GeoPtProperty()
