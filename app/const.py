@@ -1,2 +1,1 @@
-from sys import maxint
-THEM_ALL = maxint - 1
+THEM_ALL = 1000
