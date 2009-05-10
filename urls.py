@@ -16,6 +16,4 @@ from django.conf.urls.defaults import *
 
 urlpatterns = patterns('app.views',
   (r'^$', 'index'),
-  (r'^time$', 'time'),
-  (r'^time/plus/(\d{1,2})$', 'time_ahead'),
 )

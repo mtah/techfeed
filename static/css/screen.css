@@ -23,7 +23,7 @@ div { margin: 0; }
 #container a:hover { border-color: #cc0a00; }
 
 #sitenav {
-  background-color: #e6e6e6;
+  background: #e6e6e6 url('/static/img/site-nav-bg.gif') repeat-x center left;
   height: 1.5em;
   line-height: 1.5em; padding: 1em 1em 1em 1.5em;
 }
@@ -32,7 +32,10 @@ div { margin: 0; }
 
 #sitenav a {
   color: black;
+  font-weight: bold;
 }
+
+#sitenav a:hover { border: none; }
 
 #navlinks { float: left; }
 #search { float: right; }
