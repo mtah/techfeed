@@ -73,4 +73,6 @@ IGNORE_APP_SETTINGS = IGNORE_APP_URLSAUTO = (
     # 'yetanotherapp',
 )
 
+TIME_FORMAT = "H:i"
+
 from ragendja.settings_post import *

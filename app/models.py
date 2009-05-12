@@ -60,7 +60,8 @@ class Venue(db.Model):
 class Event(Taggable):
   name = db.StringProperty(required=True)
   description = db.TextProperty(required=True)
-  when = db.DateTimeProperty(required=True)
+  date = db.DateProperty(required=True)
+  time = db.TimeProperty(required=True)
   where = db.ReferenceProperty(reference_class=Venue, required=True)
   website = db.LinkProperty()
   contact_email = db.EmailProperty()
@@ -68,11 +69,11 @@ class Event(Taggable):
   
   @classmethod
   def all_from(cls, date):
-    return Event.all().filter('when >= ', date)
+    return Event.all().filter('date >= ', date).order('-date')
   
   @classmethod
   def all_between(cls, date1, date2):
-    return Event.all_from(date1).filter('when < ', date2)
+    return Event.all_from(date1).filter('date < ', date2)
   
   @classmethod
   def all_for(cls, date):

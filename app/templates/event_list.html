@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  {% if object_list %}
+  {% regroup object_list by date as event_list %}
+  <ul>
+  {% for events_on_date in event_list %}
+    <li>{{ events_on_date.grouper }}</li>
+    <ul>
+      {% for event in events_on_date.list %}
+        <li><a href="{% url app.views.show_event key=event.key %}">
+          {{ event.time|time }} - {{ event.name }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
+  </ul>
+  {% endif %}
+{% endblock %}

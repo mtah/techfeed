@@ -2,7 +2,13 @@
 
 from app.models import Venue, Event
 from google.appengine.ext.db import *
-from datetime import datetime
+from datetime import datetime, date, time, timedelta
+
+now = datetime.now()
+just_before = now - timedelta(hours=1)
+just_after = now - timedelta(hours=1)
+later = now + timedelta(days=1)
+much_later = now + timedelta(days=5)
 
 chalmers = Venue(
   name=u"Chalmers Tekniska Högskola",
@@ -23,10 +29,11 @@ svenska_massan = Venue(
 svenska_massan.save()
 
 ncpc = Event(
-  name = u"Nordic Collegiate Programming Challenge (NCPC) 2009",
+  name = u"Nordic Collegiate Programming Challenge (NCPC)",
   description = "Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. " \
   "Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.",
-  when = datetime(2009,5,8,18,0),
+  date = date(now.year,now.month,now.day),
+  time = time(now.hour, now.minute),
   where = chalmers,
   website = Link("http://ncpc.example.com"),
   contact_email = Email("foo@example.com"),
@@ -40,7 +47,8 @@ ncpc.save()
 nordic_python = Event(
   name = u"Nordic Python Conference",
   description = "Lorem ipsum dolor sit amet",
-  when = datetime(2009,9,28,10,0),
+  date = date(just_before.year,just_before.month,just_before.day),
+  time = time(just_before.hour, just_before.minute),
   where = kth,
   website = None,
   contact_email = None,
@@ -52,11 +60,41 @@ nordic_python.save()
 foobar = Event(
   name = "The Foo Bar",
   description = "Foo bar baz foo bar baz",
-  when = datetime(2008,10,18,0,0),
+  date = date(just_after.year,just_after.month,just_after.day),
+  time = time(just_after.hour, just_after.minute),
   where = svenska_massan,
   website = None,
   contact_email = None,
   contact_phone = None,
 )
-foobar.add_tag("ruby")
+foobar.add_tag("c++")
 foobar.save()
+
+railsconf = Event(
+  name = u"RailsConf",
+  description = "Lorem ipsum dolor sit amet",
+  date = date(later.year,later.month,later.day),
+  time = time(later.hour, later.minute),
+  where = kth,
+  website = "http://railsconf.org",
+  contact_email = "foo@barsson.com",
+  contact_phone = None,
+)
+railsconf.add_tag("ruby")
+railsconf.add_tag("rails")
+railsconf.save()
+
+barcamp = Event(
+  name = u"Barcamp",
+  description = "Lorem ipsum dolor sit amet",
+  date = date(much_later.year,much_later.month,much_later.day),
+  time = time(much_later.hour, much_later.minute),
+  where = chalmers,
+  website = "http://barcamp.org",
+  contact_email = "foo@barsson.com",
+  contact_phone = None,
+)
+barcamp.add_tag("open source")
+barcamp.add_tag("ubuntu")
+barcamp.save()
+
