@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% load render_partial %}
+
+{% block content %}
+  <h2>{{ venue.name }}</h2>
+  <div>
+    {% if venue.events %}
+    <ul>
+      {% for event in venue.events %}
+      <li>
+        {% render_partial "event-brief.html" event:event %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>  
+{% endblock %}

@@ -1,0 +1,8 @@
+<div id="map"></div>
+<script type="text/javascript">
+function _load_map() {
+  var map = new google.maps.Map2(document.getElementById("map"));
+  map.setCenter(new google.maps.LatLng({{ coord.lat }}, {{ coord.lon }}), 13);
+}
+google.setOnLoadCallback(_load_map);
+</script>

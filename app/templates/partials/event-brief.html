@@ -1,0 +1,4 @@
+<a href="{% url app.views.show_event event.key %}">{{ event.name }}</a><br />
+<span class="event-info">{{ event.time|time }}
+  <a href="{% url app.views.show_venue event.venue.key %}">{{event.venue.name }}</a>
+</span>

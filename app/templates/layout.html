@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>techFeed -> kalendern för teknikintresserade</title>
+    <link rel="stylesheet" href="/static/css/typography.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/static/css/forms.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/static/css/screen.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("maps", "2.x");
+    </script>
+  </head>
+  <body>
+    <div id="header">
+      <h1>techFeed</h1>
+      - hitta konferenser, användargruppsmöten och andra teknikevenemang
+    </div>
+    <div id="sitenav">
+      <div id="navlinks">
+        <a href="#">Lägg till evenemang</a>
+      </div>
+      <div id="search">
+        <input id="search-box" type="text" name="searchquery" />
+      </div>
+    </div>
+    <div id="container">
+      <div id="sidebar">
+        <div id="info">
+          <h2>Hej värld.</h2>
+          <p>Välkommen till <strong>techFeed</strong>, en community-driven kalender
+             som håller koll på alla konferenser, föreläsningar, användargruppsmöten och andra 
+             teknikevenemang i Sverige och dess omkrets.</p>
+        </div>
+        <div>
+          <a href="#" style="font-size: 1.5em;">ruby</a> <a href="#" style="font-size: 2.3em">python</a> 
+          <a href="#" style="font-size: 1.1em;">c++</a> <a href="#" style="font-size: 0.7em">haskell</a>
+          <a href="#" style="font-size: 1.3em;">mac</a> <a href="#" style="font-size: 2.3em">ubuntu</a>
+        </div>   
+      </div>
+      <div id="content">
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+  </body>
+</html>

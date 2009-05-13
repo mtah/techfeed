@@ -4,13 +4,13 @@ from urllib import urlopen, quote_plus
 
 # helper methods
 def to_geopt(address):
-  q = quote_plus(address)
-  request = "http://maps.google.se/maps/geo?q=%s&output=csv" % q
+  q = quote_plus(unicode(address).encode("utf-8"))
+  request = 'http://maps.google.se/maps/geo?q=%s&output=csv' % q
   
   try:
     data = urlopen(request).read().split(',')
     if data[0] == '200':
-      return GeoPt(data[2], data[3])
+      return db.GeoPt(data[2], data[3])
     else:
       return None
   except IOError:
@@ -41,7 +41,7 @@ class Taggable(db.polymodel.PolyModel):
   def remove_tag(self, tagname):
     tag = Tag.get_by_name(tagname.lower())
     if tag == None:
-      raise ValueError, "%s is not a tag" % tagname
+      raise ValueError, '%s is not a tag' % tagname
     if tag.key() in self.tags:
       self.tags.remove(tag.key())
       tag.count -= 1
@@ -56,13 +56,18 @@ class Venue(db.Model):
   name = db.StringProperty(required=True)
   address = db.PostalAddressProperty(required=True)
   coordinates = db.GeoPtProperty()
+  
+  def __init__(self, *args, **kwds):
+    if not kwds.has_key('coordinates'):
+      kwds['coordinates'] = to_geopt(kwds['address'])
+    db.Model.__init__(self, *args, **kwds)
 
 class Event(Taggable):
   name = db.StringProperty(required=True)
   description = db.TextProperty(required=True)
   date = db.DateProperty(required=True)
   time = db.TimeProperty(required=True)
-  where = db.ReferenceProperty(reference_class=Venue, required=True)
+  venue = db.ReferenceProperty(reference_class=Venue, required=True, collection_name='events')
   website = db.LinkProperty()
   contact_email = db.EmailProperty()
   contact_phone = db.PhoneNumberProperty()

@@ -26,11 +26,14 @@ def create_event(request):
   
 def list_events(request):
   one_hour_ago = datetime.now() - timedelta(hours=1)
-  return object_list(request, Event.all(), paginate_by=25)
+  return object_list(request, Event.all(), paginate_by=25, template_object_name='event')
   
 def show_event(request, key):
-  return object_detail(request, Event.all(), key)
+  return object_detail(request, Event.all(), key, template_object_name='event')
   
 def events_for_tag(request, tagname):
-  return object_list(request, Event.all_for_tag(tagname))
+  return object_list(request, Event.all_for_tag(tagname), template_object_name='event')
+  
+def show_venue(request, key):
+  return object_detail(request, Venue.all(), key, template_object_name='venue')
     

@@ -1,10 +1,10 @@
 {% extends "layout.html" %}
 
 {% block content %}
-  {% if object_list %}
-  {% regroup object_list by date as event_list %}
+  {% if event_list %}
+  {% regroup event_list by date as event_list_date_grouped %}
   <ul>
-  {% for events_on_date in event_list %}
+  {% for events_on_date in event_list_date_grouped %}
     <li>{{ events_on_date.grouper }}</li>
     <ul>
       {% for event in events_on_date.list %}

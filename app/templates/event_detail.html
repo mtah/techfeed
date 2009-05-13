@@ -1,15 +1,13 @@
 {% extends "layout.html" %}
-
+{% load render_partial %}
 {% block content %}
-<h2>{{ object.name }}</h2>
+<h2>{{ event.name }}</h2>
 <div>
-  <p class="event-info">{{ object.description }}</p>
-  <p class="tags">
-  {% for tag in object.tags %}
-    <a class="tag" href="{% url app.views.events_for_tag tagname=tag.name %}">{{ tag.name }}</a> 
-  {% endfor %}
-  </p>
+  <p class="event-info">{{ event.description }}</p>
+  {% render_partial "tags.html" tags:event.tags %}
 </div>
-<div 
+{% if event.venue.coordinates %}
+  {% render_partial "map.html" coord:event.venue.coordinates %}
+{% endif %}
 {% endblock %}
     

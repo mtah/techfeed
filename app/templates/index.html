@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% load render_partial %}
+{% block content %}
+<h2>Kommande evenemang</h2>
+  
+  {% if todays_events %}
+  <div class="event-section">
+    <div class="date">IDAG</div>
+    <div class="event-list">
+    
+    <ul>
+    {% for event in todays_events %}
+      <li>
+        {% render_partial "event-brief.html" event:event %}
+      </li>
+    {% endfor %}
+    </ul>
+    </div>
+  </div>
+  {% endif %}
+  
+  {% if tomorrows_events %}
+  <div class="event-section">
+    <div class="date">IMORGON</div>
+    <div class="event-list">
+    <ul>
+    {% for event in tomorrows_events %}
+      <li>
+        {% render_partial "event-brief.html" event:event %}
+      </li>
+    {% endfor %}
+    </ul>
+    </div>
+  </div>
+  {% endif %}
+  
+  {% if future_events %}
+  <div class="event-section">
+    <div class="date">FRAMÖVER</div>
+    <div class="event-list">
+    
+    <ul>
+    {% for event in future_events %}
+      <li>
+        {% render_partial "event-brief.html" event:event %}
+      </li>
+    {% endfor %}
+    </ul>
+    </div>
+  </div>
+  {% endif %}
+{% endblock %}
