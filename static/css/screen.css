@@ -112,6 +112,14 @@ div { margin: 0; }
   color: #aaa;
 }
 
+#event-description {
+  background: #efeff5;
+  padding: 1em;
+  width: 50%;
+}
+
+#map { width: 50% }
+
 #container .event-info a {
   color: #aaa;
 }

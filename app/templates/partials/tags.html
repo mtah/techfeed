@@ -1,5 +1,3 @@
-<p class="tags">
-  {% for tag in tags %}
-    <a class="tag" href="{% url app.views.events_for_tag tagname=tag.name %}">{{ tag.name }}</a> 
-  {% endfor %}
-</p>
+{% for tag in tags %}
+  <a class="tag" href="{% url app.views.events_for_tag tagname=tag.name %}">{{ tag.name }}</a> 
+{% endfor %}
