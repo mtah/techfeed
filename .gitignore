@@ -1,3 +1,4 @@
 *~
 *.pyc
 .google_appengine
+index.yaml

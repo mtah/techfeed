@@ -2,16 +2,14 @@
 {% load render_partial %}
 {% block content %}
 <h2>{{ event.name }}</h2>
-<div> 
+<div id="event">
+  {% if event.venue.coordinates %}
+  {% render_partial "map.html" coord:event.venue.coordinates %}
+  {% endif %}
   <p id="event-description">{{ event.description }}</p>
   <p><strong>Tid: </strong>{{ event.date|date }} {{ event.time|time }}<br />
      <strong>Plats: </strong>{{ event.venue.name }}</p>
   <p>{% render_partial "tags.html" tags:event.tags %}</p>
 </div>
-{% comment %}
-{% if event.venue.coordinates %}
-  {% render_partial "map.html" coord:event.venue.coordinates %}
-{% endif %}
-{% endcomment %}
 {% endblock %}
     

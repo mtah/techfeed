@@ -22,7 +22,7 @@ div { margin: 0; }
 
 #header {
   padding: 2em;
-  height: 5em;
+  height: 3em;
   background: black;
   color: white;
 }
@@ -115,10 +115,11 @@ div { margin: 0; }
 #event-description {
   background: #efeff5;
   padding: 1em;
-  width: 50%;
 }
 
-#map { width: 50% }
+#map { width: 250px; height: 250px; }
+#event #map { float: right; margin-right: -270px; }
+#event { padding-right: 270px; }
 
 #container .event-info a {
   color: #aaa;
