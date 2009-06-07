@@ -10,7 +10,10 @@ class PartialNode(template.Node):
   def render(self, context):
     context_params = {}
     for k, v in self.params.items():
-      context_params[k] = template.Variable(v).resolve(context)
+      try:
+        context_params[k] = eval(v)
+      except:
+        context_params[k] = template.Variable(v).resolve(context)
       
     t = template.loader.get_template('partials/%s' % self.partial)
     return t.render(template.Context(context_params))

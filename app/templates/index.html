@@ -42,7 +42,7 @@
     <ul>
     {% for event in future_events %}
       <li>
-        {% render_partial "event-brief.html" event:event %}
+        {% render_partial "event-brief.html" event:event show_date:True %}
       </li>
     {% endfor %}
     </ul>

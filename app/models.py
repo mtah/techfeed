@@ -61,6 +61,9 @@ class Venue(db.Model):
     if not kwds.has_key('coordinates'):
       kwds['coordinates'] = to_geopt(kwds['address'])
     db.Model.__init__(self, *args, **kwds)
+    
+  def __unicode__(self):
+    return self.name
 
 class Event(Taggable):
   name = db.StringProperty(required=True)
@@ -84,6 +87,9 @@ class Event(Taggable):
   def all_for(cls, date):
     next_day = date + timedelta(days=1)
     return Event.all_between(date, next_day)
+    
+  def __unicode__(self):
+    return self.name
     
   
   
